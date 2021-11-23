@@ -1,0 +1,25 @@
+version: '2.4'
+
+services:
+  tron:
+    image: wshub/tron
+    container_name: chain-trx-02
+#   environment:
+#     - NETWORK=mainnet
+#     - P2P_PORT=18888
+#     - FULL_NODE_PORT=8090
+#     - SOLIDITY_NODE_PORT=8091
+#     - EVENT_PLUGIN_ENABLED=false
+#     - WITNESS_MODE=true
+    volumes:
+      - $PWD/trx-data:/opt/coin/data
+      - $PWD/trx-data/mainnet_config.conf:/etc/tron/mainnet_config.conf:rw
+    ports:
+      - 18888:18888
+      - 8090:8090
+      - 8091:8091
+    restart: always
+    cpu_shares: 16000
+    mem_limit: 31g
+    memswap_limit: 1g
+
